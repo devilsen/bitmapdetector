@@ -1,0 +1,3 @@
+rootProject.name = "BitmapDetector"
+include ':app'
+include ':detector'

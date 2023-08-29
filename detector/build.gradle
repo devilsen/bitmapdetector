@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+dependencies {
+    implementation "com.android.tools.build:gradle:7.1.3"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.21'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+gradlePlugin {
+    plugins {
+        modularPlugin {
+            // Plugin id.
+            id = 'com.sam.plugin.bitmapdetector'
+            // Plugin implementation.
+            implementationClass = 'com.sam.detector.DetectPlugin'
+        }
+    }
+}
+
+publishing {
+    publications {
+        DetectorPlugin(MavenPublication) {
+            from components.java
+            groupId 'com.sam.plugin'
+            artifactId 'detector'
+            version "0.0.1"
+        }
+    }
+    repositories {
+        maven {
+            url "$rootDir/localMavenRepository/snapshot"
+        }
+    }
+}

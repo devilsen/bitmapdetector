@@ -1,0 +1,2 @@
+# bitmapdetector
+bitmapdetector
